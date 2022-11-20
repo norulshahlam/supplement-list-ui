@@ -19,7 +19,7 @@ const SupplementList = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [supplements]);
 
   const deleteSupplement = (e, id) => {
     e.preventDefault();

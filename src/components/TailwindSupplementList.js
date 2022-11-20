@@ -4,10 +4,10 @@ import EditSupplement from "./EditSupplement";
 import TailwindSupplement from "./TailwindSupplement";
 
 const TailwindTable = () => {
-  const [supplements, setSupplements] = useState([]);
+  const [supplements, setSupplements] = useState([]); // list of supp
   const [loading, setLoading] = useState(false);
   const [editState, setEditState] = useState(-1); //set edit sate of item by id
-  const [editSupp, setEditSupp] = useState({});
+  const [editingSupp, setEditingSupp] = useState({}); // single supp to be edited
 
   const fetchData = async () => {
     setLoading(true);
@@ -24,24 +24,38 @@ const TailwindTable = () => {
     fetchData();
   }, []);
 
-  const deleteSupplement = (e, id) => {
+  const deleteSupplement = (e, productId) => {
     e.preventDefault();
-    SupplementService.deleteSupplement(id).then((res) => {
-      if (supplements) {
-        setSupplements((prevElement) => {
-          return prevElement.filter((supplement) => supplement.id !== id);
-        });
-      }
+    SupplementService.deleteSupplement(productId).then((res) => {
+      setSupplements((prevElement) => {
+        return prevElement.filter(
+          (supplement) => supplement.productId !== productId
+        );
+      });
     });
   };
 
-  const editSupplement = (e, id, v) => {
+  const triggerEditSupplement = (id, v) => {
     setEditState(id);
-    setEditSupp(supplements[v]);
+    setEditingSupp(supplements[v]);
   };
 
-  const cancelEdit = (e) => {
-    console.log("cancel editSupp");
+  const cancelEdit = () => {
+    console.log("cancel editingSupp for suppl: " + editingSupp.productName);
+    setEditState(-1);
+    setEditingSupp({});
+  };
+
+  const saveEditSupp = (e, v) => {
+    console.log("saving editingSupp for suppl: " + editingSupp.productName);
+    SupplementService.updateSupplement(editingSupp)
+      .then((res) => {
+        if (res.data.data) {
+          console.log("update succeses for item " + res.data.data.productName);
+          setSupplements([...supplements, (supplements[v] = editingSupp)]);
+        } else console.log(res.errorMessage);
+      })
+      .catch((e) => {});
     setEditState(-1);
   };
 
@@ -132,18 +146,20 @@ const TailwindTable = () => {
                   {supplements.map((supplement, v) =>
                     editState === supplement.productId ? (
                       <EditSupplement
-                        key={supplement.productId}
+                        key={v}
                         cancelEdit={cancelEdit}
-                        editSupplement={editSupplement}
                         supplement={supplements[v]}
+                        saveEditSupp={saveEditSupp}
+                        editingSupp={editingSupp}
+                        setEditingSupp={setEditingSupp}
                       />
                     ) : (
                       <TailwindSupplement
                         supplement={supplement}
-                        key={supplement.productId}
+                        key={v}
                         index={v}
                         deleteSupplement={deleteSupplement}
-                        editSupplement={editSupplement}
+                        triggerEditSupplement={triggerEditSupplement}
                       ></TailwindSupplement>
                     )
                   )}

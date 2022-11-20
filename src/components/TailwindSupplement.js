@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
-import EditSupplement from "./EditSupplement";
+import React, { useState,useEffect } from "react";
 
 const TailwindSupplement = ({
   supplement,
   deleteSupplement,
-  editSupplement,
+  triggerEditSupplement,
   index
 }) => {
-  const [checkbox, setCheckbox] = useState([]);
+  const [checkbox, setCheckbox] = useState(['hh']);
   const [loading, setLoading] = useState(false);
 
   const handleOnCheck = (e) => {
     setLoading(true);
     const { value, checked } = e.target;
     console.log(value, checked);
+    console.log("checkbox",checkbox)
     if (checked) {
       setCheckbox([...checkbox, value]);
     } else {
       setCheckbox(checkbox.filter((i) => i !== value));
     }
     setLoading(false);
-    testing();
   };
 
-  const testing = () => {
-    if (!loading) {
-      console.log(checkbox);
-    }
-  };
+  useEffect(() => {
+    console.log(checkbox)
+  }, [checkbox])
 
   return (
     <tr class="bg-white border-b hover:bg-slate-100">
@@ -35,7 +32,7 @@ const TailwindSupplement = ({
         <input
           type="checkbox"
           value={supplement.productId}
-          onClick={(e) => handleOnCheck(e)}
+          onChange={(e) => handleOnCheck(e)}
           checked={supplement.checkbox}
         />
       </td>
@@ -72,7 +69,7 @@ const TailwindSupplement = ({
       </td>
       <td class=" text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <a
-          onClick={(e) => editSupplement(e, supplement.productId, index)}
+          onClick={(e) => triggerEditSupplement(e, supplement.productId, index)}
           className="text-white hover:text-indigo-800 px-2 mx-2 hover:cursor-pointer bg-black rounded-md"
         >
           Edit
