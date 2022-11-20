@@ -38,7 +38,6 @@ const TailwindTable = () => {
   const editSupplement = (e, id, v) => {
     setEditState(id);
     setEditSupp(supplements[v]);
-    console.log(supplements[v]);
   };
 
   const cancelEdit = (e) => {
@@ -136,7 +135,7 @@ const TailwindTable = () => {
                         key={supplement.productId}
                         cancelEdit={cancelEdit}
                         editSupplement={editSupplement}
-                        supplement={editSupp}
+                        supplement={supplements[v]}
                       />
                     ) : (
                       <TailwindSupplement

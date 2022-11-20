@@ -1,48 +1,117 @@
 import React from "react";
 
-const EditSupplement = ({ cancelEdit, editSupplement, editSupp }) => {
+const EditSupplement = ({
+  cancelEdit,
+  editSupplement,
+  editSupp,
+  supplement,
+}) => {
+  console.log(supplement);
+  const {
+    productName,
+    alias,
+    type,
+    brand,
+    price,
+    dosage,
+    quantity,
+    packaging,
+    available,
+    remarks,
+  } = supplement;
 
-  console.log(editSupp)
   return (
-    <tr class="bg-white border-b">
+    <tr class="bg-gray-300 border-b">
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"></td>
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input  type="text" name="productName" placeholder="Enter name"></input>
-      </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="alias" placeholder="Enter alias"></input>
-      </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="type" placeholder="Enter type"></input>
-      </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="brand" placeholder="Enter brand"></input>
-      </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="number" name="price" placeholder="Enter price"></input>
-      </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="dosage" placeholder="Enter dosage"></input>
-      </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="quantity" placeholder="Enter quantity"></input>
+        <input
+          value={productName || ""}
+          type="text"
+          name="productName"
+          placeholder="Enter name"
+          className="rounded-md px-1"
+        ></input>
       </td>
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <input
+          value={alias || ""}
+          type="text"
+          name="alias"
+          placeholder="Enter alias"
+           className="rounded-md px-1"
+        ></input>
+      </td>
+      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <input
+          value={type || ""}
+          type="text"
+          name="type"
+          placeholder="Enter type"
+           className="rounded-md px-1"
+        ></input>
+      </td>
+      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <input
+          value={brand || ""}
+          type="text"
+          name="brand"
+          placeholder="Enter brand"
+           className="rounded-md px-1"
+        ></input>
+      </td>
+      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <input
+          value={price || ""}
+          type="number"
+          name="price"
+          placeholder="Enter price"
+           className="rounded-md px-1"
+        ></input>
+      </td>
+      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <input
+          value={dosage || ""}
+          type="text"
+          name="dosage"
+          placeholder="Enter dosage"
+           className="rounded-md px-1"
+        ></input>
+      </td>
+      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <input
+          value={quantity || ""}
+          type="text"
+          name="quantity"
+          placeholder="Enter quantity"
+           className="rounded-md px-1"
+        ></input>
+      </td>
+      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <input
+          value={packaging || ""}
           type="text"
           name="packaging"
           placeholder="Enter packaging"
+           className="rounded-md px-1"
         ></input>
       </td>
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <input
+          value={available || ""}
           type="text"
           name="available"
           placeholder="Enter available"
+           className="rounded-md px-1"
         ></input>
       </td>
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="remarks" placeholder="Enter remarks"></input>
+        <input
+          value={remarks || ""}
+          type="text"
+          name="remarks"
+          placeholder="Enter remarks"
+           className="rounded-md px-1"
+        ></input>
       </td>
       <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <a
