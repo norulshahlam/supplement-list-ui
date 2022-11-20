@@ -1,39 +1,23 @@
 import React, { useState,useEffect } from "react";
+import lodash from "lodash";
 
 const TailwindSupplement = ({
   supplement,
   deleteSupplement,
   triggerEditSupplement,
-  index
+  index,
+  handleOnCheck
 }) => {
-  const [checkbox, setCheckbox] = useState(['hh']);
-  const [loading, setLoading] = useState(false);
 
-  const handleOnCheck = (e) => {
-    setLoading(true);
-    const { value, checked } = e.target;
-    console.log(value, checked);
-    console.log("checkbox",checkbox)
-    if (checked) {
-      setCheckbox([...checkbox, value]);
-    } else {
-      setCheckbox(checkbox.filter((i) => i !== value));
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    console.log(checkbox)
-  }, [checkbox])
+  const temp = lodash.cloneDeep(supplement);
 
   return (
     <tr class="bg-white border-b hover:bg-slate-100">
       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
         <input
           type="checkbox"
-          value={supplement.productId}
-          onChange={(e) => handleOnCheck(e)}
-          checked={supplement.checkbox}
+          value={supplement}
+          onChange={(e) => handleOnCheck(e,temp)}
         />
       </td>
 

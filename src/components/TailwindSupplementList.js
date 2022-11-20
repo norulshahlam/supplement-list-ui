@@ -2,13 +2,25 @@ import React, { useState, useEffect } from "react";
 import SupplementService from "../api/SupplementService";
 import EditSupplement from "./EditSupplement";
 import TailwindSupplement from "./TailwindSupplement";
+import lodash from "lodash";
 
 const TailwindTable = () => {
   const [supplements, setSupplements] = useState([]); // list of supp
   const [loading, setLoading] = useState(false);
   const [editState, setEditState] = useState(-1); //set edit sate of item by id
   const [editingSupp, setEditingSupp] = useState({}); // single supp to be edited
+  const [checkbox, setCheckbox] = useState([]);
 
+  const handleOnCheck = (e, temp) => {
+    setLoading(true);
+    const { value, checked } = e.target;
+    if (checked) {
+      setCheckbox([...checkbox, temp]);
+    } else {
+      setCheckbox(checkbox.filter((i) => i !== value));
+    }
+    setLoading(false);
+  };
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -35,7 +47,8 @@ const TailwindTable = () => {
     });
   };
 
-  const triggerEditSupplement = (id, v) => {
+  const triggerEditSupplement = (e, id, v) => {
+    console.log(id);
     setEditState(id);
     setEditingSupp(supplements[v]);
   };
@@ -46,17 +59,26 @@ const TailwindTable = () => {
     setEditingSupp({});
   };
 
-  const saveEditSupp = (e, v) => {
-    console.log("saving editingSupp for suppl: " + editingSupp.productName);
-    SupplementService.updateSupplement(editingSupp)
-      .then((res) => {
-        if (res.data.data) {
-          console.log("update succeses for item " + res.data.data.productName);
-          setSupplements([...supplements, (supplements[v] = editingSupp)]);
-        } else console.log(res.errorMessage);
-      })
-      .catch((e) => {});
-    setEditState(-1);
+  const saveEditSupp = (editingSupp, index) => {
+    if (editingSupp.productName.length > 2) {
+      const temp = lodash.cloneDeep(supplements);
+      temp[index] = editingSupp;
+      console.log(temp);
+      SupplementService.updateSupplement(editingSupp)
+        .then((res) => {
+          if (res.data.data) {
+            console.log(
+              "update succeses for item " + res.data.data.productName
+            );
+            setSupplements(temp);
+          } else console.log(res.data.errorMessage);
+          console.log("supplement changed: ", supplements[index]);
+        })
+        .catch((e) => {});
+      setEditState(-1);
+    } else {
+      console.log("name must more than 3 char!");
+    }
   };
 
   return (
@@ -147,6 +169,7 @@ const TailwindTable = () => {
                     editState === supplement.productId ? (
                       <EditSupplement
                         key={v}
+                        index={v}
                         cancelEdit={cancelEdit}
                         supplement={supplements[v]}
                         saveEditSupp={saveEditSupp}
@@ -160,6 +183,7 @@ const TailwindTable = () => {
                         index={v}
                         deleteSupplement={deleteSupplement}
                         triggerEditSupplement={triggerEditSupplement}
+                        handleOnCheck={handleOnCheck}
                       ></TailwindSupplement>
                     )
                   )}

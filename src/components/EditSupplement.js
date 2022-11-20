@@ -5,9 +5,9 @@ const EditSupplement = ({
   saveEditSupp,
   editingSupp,
   supplement,
-  setEditingSupp
+  setEditingSupp,
+  index,
 }) => {
-
   const {
     productName,
     alias,
@@ -27,7 +27,6 @@ const EditSupplement = ({
       ...supplement,
       [name]: value,
     });
-    console.log(name, value, editingSupp);
   };
   return (
     <tr class="bg-gray-300 border-b">
@@ -37,6 +36,7 @@ const EditSupplement = ({
           value={productName}
           type="text"
           name="productName"
+          minlength="3"
           placeholder="Enter name"
           className="rounded-md px-1"
           onChange={handleChange}
@@ -140,7 +140,7 @@ const EditSupplement = ({
           Cancel
         </a>
         <a
-          onClick={() => saveEditSupp(editingSupp)}
+          onClick={() => saveEditSupp(editingSupp, index)}
           className="text-white hover:text-indigo-800 px-2 mx-2 hover:cursor-pointer bg-black rounded-md"
         >
           Save
