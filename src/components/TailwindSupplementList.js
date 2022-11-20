@@ -6,7 +6,7 @@ import TailwindSupplement from "./TailwindSupplement";
 const TailwindTable = () => {
   const [supplements, setSupplements] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [editState, setEditState] = useState(-1);
+  const [editState, setEditState] = useState(-1); //set edit sate of item by id
   const [editSupp, setEditSupp] = useState({});
 
   const fetchData = async () => {
@@ -35,10 +35,10 @@ const TailwindTable = () => {
     });
   };
 
-  const editSupplement = (e, id) => {
+  const editSupplement = (e, id, v) => {
     setEditState(id);
-    setEditSupp(supplements[id]);
-    console.log(supplements[1]);
+    setEditSupp(supplements[v]);
+    console.log(supplements[v]);
   };
 
   const cancelEdit = (e) => {
@@ -130,9 +130,10 @@ const TailwindTable = () => {
               </thead>
               {!loading && (
                 <tbody className="bg-white">
-                  {supplements.map((supplement) =>
+                  {supplements.map((supplement, v) =>
                     editState === supplement.productId ? (
                       <EditSupplement
+                        key={supplement.productId}
                         cancelEdit={cancelEdit}
                         editSupplement={editSupplement}
                         supplement={editSupp}
@@ -141,6 +142,7 @@ const TailwindTable = () => {
                       <TailwindSupplement
                         supplement={supplement}
                         key={supplement.productId}
+                        index={v}
                         deleteSupplement={deleteSupplement}
                         editSupplement={editSupplement}
                       ></TailwindSupplement>

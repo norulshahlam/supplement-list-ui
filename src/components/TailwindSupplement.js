@@ -5,6 +5,7 @@ const TailwindSupplement = ({
   supplement,
   deleteSupplement,
   editSupplement,
+  index
 }) => {
   const [checkbox, setCheckbox] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -71,7 +72,7 @@ const TailwindSupplement = ({
       </td>
       <td class=" text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <a
-          onClick={(e, id) => editSupplement(e, supplement.productId)}
+          onClick={(e) => editSupplement(e, supplement.productId, index)}
           className="text-white hover:text-indigo-800 px-2 mx-2 hover:cursor-pointer bg-black rounded-md"
         >
           Edit

@@ -1,11 +1,13 @@
 import React from "react";
 
-const EditSupplement = ({ cancelEdit,editSupplement, editSupp }) => {
+const EditSupplement = ({ cancelEdit, editSupplement, editSupp }) => {
+
+  console.log(editSupp)
   return (
     <tr class="bg-white border-b">
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"></td>
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <input type="text" name="productName" placeholder="Enter name"></input>
+        <input  type="text" name="productName" placeholder="Enter name"></input>
       </td>
       <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <input type="text" name="alias" placeholder="Enter alias"></input>
@@ -50,7 +52,7 @@ const EditSupplement = ({ cancelEdit,editSupplement, editSupp }) => {
           Cancel
         </a>
         <a
-           onClick={(e, id) => editSupplement(editSupp)}
+          onClick={() => editSupplement(editSupp)}
           className="text-white hover:text-indigo-800 px-2 mx-2 hover:cursor-pointer bg-black rounded-md"
         >
           Save
