@@ -3,19 +3,19 @@ import SupplementService from "../api/SupplementService";
 import EditSupplement from "./EditSupplement";
 import TailwindSupplement from "./TailwindSupplement";
 import lodash from "lodash";
+import Cart from "./Cart";
 
 const TailwindTable = () => {
   const [supplements, setSupplements] = useState([]); // list of supp
   const [loading, setLoading] = useState(false);
   const [editState, setEditState] = useState(-1); //set edit sate of item by id
   const [editingSupp, setEditingSupp] = useState({}); // single supp to be edited
-  const [checkedItem, setCheckedItem] = useState([]);
+  const [checkedItem, setCheckedItem] = useState([]); // list of checked supp
 
   const handleOnCheck = (e, temp) => {
-
     setLoading(true);
     const { value, checked } = e.target;
-    console.log(value, checked)
+    console.log(value, checked);
     if (checked) {
       setCheckedItem([...checkedItem, temp]);
     } else {
@@ -73,7 +73,6 @@ const TailwindTable = () => {
     } else {
       const temp = lodash.cloneDeep(supplements);
       temp[index] = editingSupp;
-      console.log(temp);
       SupplementService.updateSupplement(editingSupp)
         .then((res) => {
           if (res.data.data) {
@@ -85,7 +84,7 @@ const TailwindTable = () => {
           console.log("supplement changed: ", supplements[index]);
         })
         .catch((e) => {});
-        
+
       setEditState(-1);
     }
   };
@@ -172,8 +171,18 @@ const TailwindTable = () => {
                   </th>
                 </tr>
               </thead>
+
               {!loading && (
                 <tbody className="bg-white">
+
+                  
+                  {checkedItem.length > 0 ? (checkedItem.map(i=>{
+
+                    <Cart supplement={i} />
+                  })
+                  ) : null}
+
+
 
                   {supplements.map((supplement, v) =>
                     editState === supplement.productId ? (
@@ -197,7 +206,8 @@ const TailwindTable = () => {
                       ></TailwindSupplement>
                     )
                   )}
-                  
+
+
                 </tbody>
               )}
             </table>

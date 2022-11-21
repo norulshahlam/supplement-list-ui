@@ -36,7 +36,6 @@ const EditSupplement = ({
           value={productName}
           type="text"
           name="productName"
-          minLength="3"
           placeholder="Enter name"
           className="rounded-md px-1"
           onChange={handleChange}
