@@ -30,19 +30,19 @@ const EditSupplement = ({
   };
   return (
     <tr class="bg-gray-300 border-b">
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"></td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono"></td>
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={productName}
           type="text"
           name="productName"
-          minlength="3"
+          minLength="3"
           placeholder="Enter name"
           className="rounded-md px-1"
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={alias}
           type="text"
@@ -52,7 +52,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={type}
           type="text"
@@ -62,7 +62,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={brand}
           type="text"
@@ -72,7 +72,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={price}
           type="number"
@@ -82,7 +82,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={dosage}
           type="text"
@@ -92,7 +92,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={quantity}
           type="text"
@@ -102,7 +102,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={packaging}
           type="text"
@@ -112,7 +112,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={available}
           type="text"
@@ -122,7 +122,7 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
           value={remarks}
           type="text"
@@ -132,16 +132,16 @@ const EditSupplement = ({
           onChange={handleChange}
         ></input>
       </td>
-      <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      <td class="text-center text-sm text-gray-900 font-light px-2 py-2 whitespace-nowrap font-mono">
         <a
           onClick={cancelEdit}
-          className="text-white hover:text-indigo-800 px-2 mx-2 hover:cursor-pointer bg-black rounded-md"
+           className="text-white bg-black hover:text-black hover:bg-white px-2 mx-2 hover:cursor-pointer  rounded-md"
         >
           Cancel
         </a>
         <a
           onClick={() => saveEditSupp(editingSupp, index)}
-          className="text-white hover:text-indigo-800 px-2 mx-2 hover:cursor-pointer bg-black rounded-md"
+           className="text-white bg-black hover:text-black hover:bg-white px-2 mx-2 hover:cursor-pointer  rounded-md"
         >
           Save
         </a>

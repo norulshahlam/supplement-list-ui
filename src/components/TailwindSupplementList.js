@@ -9,15 +9,17 @@ const TailwindTable = () => {
   const [loading, setLoading] = useState(false);
   const [editState, setEditState] = useState(-1); //set edit sate of item by id
   const [editingSupp, setEditingSupp] = useState({}); // single supp to be edited
-  const [checkbox, setCheckbox] = useState([]);
+  const [checkedItem, setCheckedItem] = useState([]);
 
   const handleOnCheck = (e, temp) => {
+
     setLoading(true);
     const { value, checked } = e.target;
+    console.log(value, checked)
     if (checked) {
-      setCheckbox([...checkbox, temp]);
+      setCheckedItem([...checkedItem, temp]);
     } else {
-      setCheckbox(checkbox.filter((i) => i !== value));
+      setCheckedItem(checkedItem.filter((i) => i !== value));
     }
     setLoading(false);
   };
@@ -35,6 +37,10 @@ const TailwindTable = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(checkedItem);
+  }, [checkedItem]);
 
   const deleteSupplement = (e, productId) => {
     e.preventDefault();
@@ -60,7 +66,11 @@ const TailwindTable = () => {
   };
 
   const saveEditSupp = (editingSupp, index) => {
-    if (editingSupp.productName.length > 2) {
+    if (JSON.stringify(supplements[index]) === JSON.stringify(editingSupp)) {
+      console.log("please change something!");
+    } else if (editingSupp.productName.length < 3) {
+      console.log("name must more than 3 char!");
+    } else {
       const temp = lodash.cloneDeep(supplements);
       temp[index] = editingSupp;
       console.log(temp);
@@ -75,89 +85,88 @@ const TailwindTable = () => {
           console.log("supplement changed: ", supplements[index]);
         })
         .catch((e) => {});
+        
       setEditState(-1);
-    } else {
-      console.log("name must more than 3 char!");
     }
   };
 
   return (
-    <div class="flex flex-col">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+    <div class="flex justify-center ">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 ">
+        <div class="py-10 inline-block sm:px-6 lg:px-10">
           <div class="overflow-hidden">
-            <table class="min-w-full">
+            <table class="w-min">
               <thead class="border-b uppercase">
                 <tr>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left"
                   >
                     #
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     productName
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     alias
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     type
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     brand
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     price
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     dosage
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     quantity
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     packaging
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     available
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
                     remarks
                   </th>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                    class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-center font-mono"
                   >
                     action
                   </th>
@@ -165,6 +174,7 @@ const TailwindTable = () => {
               </thead>
               {!loading && (
                 <tbody className="bg-white">
+
                   {supplements.map((supplement, v) =>
                     editState === supplement.productId ? (
                       <EditSupplement
@@ -187,6 +197,7 @@ const TailwindTable = () => {
                       ></TailwindSupplement>
                     )
                   )}
+                  
                 </tbody>
               )}
             </table>
