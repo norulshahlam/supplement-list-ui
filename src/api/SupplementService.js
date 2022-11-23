@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const SUPPLEMENT_API_HOSTNAME_DEV = "http://localhost:8081";
-const SUPPLEMENT_API_HOSTNAME_PROD = "https://supplement-list-api-supplement-list-api.up.railway.app/";
+const SUPPLEMENT_API_HOSTNAME_PROD = "https://supplement-list-api-supplement-list-api.up.railway.app";
 const FETCH_ALL_SUPPLEMENTS_URI = "/get-all";
 const DELETE_SUPPLEMENT = "/delete";
 const UPDATE_SUPPLEMENT = "/update";
