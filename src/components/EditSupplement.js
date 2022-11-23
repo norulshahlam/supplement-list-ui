@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const EditSupplement = ({
   cancelEdit,
@@ -43,10 +43,10 @@ const EditSupplement = ({
       </td>
       <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
-          value={alias}
+          value={brand}
           type="text"
           name="alias"
-          placeholder="Enter alias"
+          placeholder="Enter brand"
           className="rounded-md px-1"
           onChange={handleChange}
         ></input>
@@ -63,10 +63,10 @@ const EditSupplement = ({
       </td>
       <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         <input
-          value={brand}
+          value={alias}
           type="text"
           name="brand"
-          placeholder="Enter brand"
+          placeholder="Enter alias"
           className="rounded-md px-1"
           onChange={handleChange}
         ></input>

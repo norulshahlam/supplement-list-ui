@@ -27,13 +27,13 @@ const TailwindSupplement = ({
         {supplement.productName}
       </td>
       <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
-        {supplement.alias}
+        {supplement.brand}
       </td>
       <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         {supplement.type}
       </td>
       <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
-        {supplement.brand}
+        {supplement.alias}
       </td>
       <td class="text-sm text-gray-900 font-light px-1 py-1 whitespace-nowrap font-mono">
         {supplement.price}

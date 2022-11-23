@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { GiCancel } from "react-icons/gi";
 import { BiArrowFromLeft } from "react-icons/bi";
-import lodash from "lodash";
 
 const Login = ({ setLogin }) => {
-  console.log("rendered in login")
-  const [submit, setSubmit] = useState({});
+  const username = useRef("");
+  const password = useRef("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSubmit({
-      ...submit,
-      [name]: value,
-    });
+    if (name === "username") username.current = value;
+    if (name === "password") password.current = value;
+    if (e.key === "Enter") {
+      handleSubmit();
+      setLogin(false);
+    }
   };
 
   const handleSubmit = () => {
-    console.log(lodash.cloneDeep(submit));
-    setLogin(false);
-    setSubmit({});
+    console.log("Submitting credentials: ", username.current, password.current);
   };
 
   useEffect(() => {
-    console.log(submit);
-  }, [submit]);
+  }, []);
 
   return (
     <div className="w-full bg-gray-800 h-14 px-8 font-bold flex items-center justify-end">
       <input
         type="text"
-        name="name"
+        name="username"
         placeholder="name"
         className="px-1 py-1 mx-2 text-gray bg-white rounded-md"
         onChange={handleChange}
+        onKeyPress={handleChange}
       ></input>
       <input
-        type="text"
+        type="password"
         name="password"
+        onClick={handleChange}
         placeholder="password"
         className="px-1 py-1 mx-2 text-gray bg-white rounded-md"
-        onChange={handleChange}
+        onKeyPress={handleChange}
       ></input>
       <button
         onClick={handleSubmit}

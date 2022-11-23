@@ -15,7 +15,6 @@ const TailwindTable = () => {
   const handleOnCheck = (e, temp) => {
     setLoading(true);
     const { value, checked } = e.target;
-    console.log(value, checked);
     if (checked) {
       setCheckedItem([...checkedItem, temp]);
     } else {
@@ -113,7 +112,7 @@ const TailwindTable = () => {
                     scope="col"
                     class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
-                    alias
+                    brand
                   </th>
                   <th
                     scope="col"
@@ -125,7 +124,7 @@ const TailwindTable = () => {
                     scope="col"
                     class="text-sm font-bold bg-slate-50 text-gray-900 px-2 py-2 text-left font-mono"
                   >
-                    brand
+                    alias
                   </th>
                   <th
                     scope="col"
