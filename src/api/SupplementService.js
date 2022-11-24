@@ -5,6 +5,7 @@ const SUPPLEMENT_API_HOSTNAME_PROD = "https://supplement-list-api-supplement-lis
 const FETCH_ALL_SUPPLEMENTS_URI = "/get-all";
 const DELETE_SUPPLEMENT = "/delete";
 const UPDATE_SUPPLEMENT = "/update";
+const EXPORT_SUPPLEMENT = "/download";
 
 const SUPPLEMENT_API_HOSTNAME =
   process.env.NODE_ENV === 'production'
@@ -23,6 +24,10 @@ class SupplementService {
   updateSupplement(supplement) {
     console.log("in update supplement service with id: " + supplement.productId);
     return axios.put(SUPPLEMENT_API_HOSTNAME + UPDATE_SUPPLEMENT, supplement);
+  }
+  exportSupplement(){
+    console.log("in export supplement service: ");
+    return axios.get(SUPPLEMENT_API_HOSTNAME + EXPORT_SUPPLEMENT);
   }
 }
 export default new SupplementService();
