@@ -82,7 +82,7 @@ const TailwindTable = () => {
           } else console.log(res.data.errorMessage);
           console.log("supplement changed: ", supplements[index]);
         })
-        .catch((e) => {});
+        .catch((e) => { });
 
       setEditState(-1);
     }
@@ -174,8 +174,8 @@ const TailwindTable = () => {
               {!loading && (
                 <tbody className="bg-white">
 
-                  
-                  {checkedItem.length > 0 ? (checkedItem.map(i=>{
+
+                  {checkedItem.length > 0 ? (checkedItem.map(i => {
 
                     <Cart supplement={i} />
                   })
