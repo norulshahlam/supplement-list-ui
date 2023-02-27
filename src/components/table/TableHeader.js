@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import SupplementService from "../api/SupplementService";
-import EditSupplement from "./EditSupplement";
-import TailwindSupplement from "./TailwindSupplement";
+import SupplementService from "../../api/SupplementService";
+import EditSupplement from "../EditSupplement";
+import TableRows from "./TableRows";
 import lodash from "lodash";
-import Cart from "./Cart";
+import Cart from "../Cart";
 
 const TailwindTable = () => {
   const [supplements, setSupplements] = useState([]); // list of supp
@@ -195,14 +195,14 @@ const TailwindTable = () => {
                         setEditingSupp={setEditingSupp}
                       />
                     ) : (
-                      <TailwindSupplement
+                      <TableRows
                         supplement={supplement}
                         key={v}
                         index={v}
                         deleteSupplement={deleteSupplement}
                         triggerEditSupplement={triggerEditSupplement}
                         handleOnCheck={handleOnCheck}
-                      ></TailwindSupplement>
+                      ></TableRows>
                     )
                   )}
 

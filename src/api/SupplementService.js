@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SUPPLEMENT_API_HOSTNAME_DEV = "http://localhost:8081";
+const SUPPLEMENT_API_HOSTNAME_DEV = "http://localhost:8082";
 const SUPPLEMENT_API_HOSTNAME_PROD = "https://supplement-list-api.herokuapp.com";
 const FETCH_ALL_SUPPLEMENTS_URI = "/get-all";
 const DELETE_SUPPLEMENT = "/delete";

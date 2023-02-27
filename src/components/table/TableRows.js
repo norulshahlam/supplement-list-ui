@@ -1,7 +1,7 @@
 import React from "react";
 import lodash from "lodash";
 
-const TailwindSupplement = ({
+const TableRows = ({
   supplement,
   deleteSupplement,
   triggerEditSupplement,
@@ -71,4 +71,4 @@ const TailwindSupplement = ({
   );
 };
 
-export default TailwindSupplement;
+export default TableRows;

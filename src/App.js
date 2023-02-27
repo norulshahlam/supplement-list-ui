@@ -1,7 +1,7 @@
 import "./App.css";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import TailwindSupplementList from "./components/TailwindSupplementList";
+import TableHeader from "./components/table/TableHeader";
 import { useState } from "react";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
     <>
       {login ? <Login setLogin={setLogin} /> : <Navbar setLogin={setLogin} />}
-      <TailwindSupplementList />
+      <TableHeader />
     </>
   );
 }
