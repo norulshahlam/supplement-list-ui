@@ -174,14 +174,9 @@ const TailwindTable = () => {
               {!loading && (
                 <tbody className="bg-white">
 
-
                   {checkedItem.length > 0 ? (checkedItem.map(i => {
-
                     <Cart supplement={i} />
-                  })
-                  ) : null}
-
-
+                  })) : null}
 
                   {supplements.map((supplement, v) =>
                     editState === supplement.productId ? (
